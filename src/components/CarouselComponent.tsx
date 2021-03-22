@@ -1,7 +1,7 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const responsive = {
   superLargeDesktop: {
@@ -45,7 +45,7 @@ export const CarouselComponent: React.FC = () => {
         responsive={responsive}
         showDots
         infinite
-        containerClass="container"
+        containerClass="container-with-dots"
         slidesToSlide={1}
       >
         {images.slice(0, 5).map((image) => {

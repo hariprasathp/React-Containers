@@ -1,0 +1,74 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+  ::-webkit-scrollbar {
+    // Width of vertical scroll bar
+    width: 8px;
+    // Height of horizontal scroll bar
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #c2c9d2;
+  }
+
+  div {
+    box-sizing: border-box;
+  }
+  div#root {
+    height: 100%;
+    width: 100%;
+
+    div.app-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      div.content-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 1px;
+        margin: 0 10px 10px 10px;
+
+        form.form-container {
+          display: flex;
+          padding-top: 10px;
+          gap: 10px;
+        }
+
+        div.sub-container {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          flex: 1 1 1px;
+          padding-top: 10px;
+
+          div.column {
+            border: 1px solid #999;
+            flex: 1 1 1px;
+            gap: 5px;
+            padding: 10px;
+            flex-direction: column;
+            display: flex;
+
+            div.list-group {
+              overflow: auto;
+              flex: 1 1 1px;
+
+              img {
+                height: 20px;
+                vertical-align: middle;
+                float: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
