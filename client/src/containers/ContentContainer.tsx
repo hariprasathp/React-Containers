@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Form,
@@ -7,11 +7,11 @@ import {
   ListGroup,
 } from "react-bootstrap";
 import { useDrag, useDrop } from "react-dnd";
-import { v4 as uuid } from "uuid";
 import CloseIcon from "../assets/CloseIcon.svg";
+import axios from "axios";
 
 interface IItem {
-  id: string;
+  id: number;
   value: string;
 }
 
@@ -68,6 +68,15 @@ export const ContentContainer: React.FC = () => {
     },
   });
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    axios.post("/api", { value: text }).then((response) => {
+      const newItem = response.data as IItem;
+      setLeftItems([...leftItems, newItem]);
+      setText("");
+    });
+  };
+
   const onRemove = (item: IItem) => {
     const index = rightItems.findIndex((value) => value.id === item.id);
     if (index > -1) {
@@ -79,16 +88,20 @@ export const ContentContainer: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    try {
+      axios.get("/api").then((response) => {
+        if (response.status == 200) {
+          const items = response.data as IItem[];
+          setLeftItems(items);
+        }
+      });
+    } catch (e) {}
+  }, []);
+
   return (
     <div className="content-container">
-      <Form
-        className="form-container"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setLeftItems([...leftItems, { value: text, id: uuid() }]);
-          setText("");
-        }}
-      >
+      <Form className="form-container" onSubmit={onSubmit}>
         <InputGroup defaultValue={text}>
           <FormControl
             aria-label="Default"
