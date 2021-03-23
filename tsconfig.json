@@ -5,10 +5,11 @@
     "jsx": "react",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
-  "include": ["src", "custom.d.ts"]
+  "include": ["client/src", "custom.d.ts", "server/index.ts", "server/entity"]
 }
